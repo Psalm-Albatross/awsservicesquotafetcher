@@ -1,0 +1,21 @@
+Service Name,Quota Name,Current Quotas,Utilized Quotas,Used (%)
+ec2,Running Dedicated m5 Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated c7g Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated g6 Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated c6g Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated c5 Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated m7i Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated r5 Hosts,0.00,0.00,0.00%
+ec2,All DL Spot Instance Requests,0.00,0.00,0.00%
+ec2,Running Dedicated c6i Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated p2 Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated i2 Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated c4 Hosts,0.00,0.00,0.00%
+ec2,All X Spot Instance Requests,0.00,0.00,0.00%
+ec2,Running Dedicated c5a Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated g4dn Hosts,0.00,0.00,0.00%
+ec2,Running Dedicated r5n Hosts,0.00,0.00,0.00%
+ec2,Routes per transit gateway,10000.00,0.00,0.00%
+ec2,New Reserved Instances per month,20.00,0.00,0.00%
+ec2,Verified Access Groups,10.00,0.00,0.00%
+ec2,Public AMIs,5.00,0.00,0.00%
