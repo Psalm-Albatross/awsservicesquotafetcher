@@ -1,0 +1,9 @@
+Service Name,Quota Name,Region,Current Quotas,Utilized Quotas,Used (%)
+dynamodb,Account-level read throughput limit (Provisioned mode),ap-south-1,80000.00,0.00,0.00%
+dynamodb,Write throughput limit for DynamoDB Streams (Provisioned mode),ap-south-1,10000.00,0.00,0.00%
+dynamodb,Account-level write throughput limit (Provisioned mode),ap-south-1,80000.00,0.00,0.00%
+dynamodb,Table-level read throughput limit,ap-south-1,40000.00,0.00,0.00%
+dynamodb,Maximum number of tables,ap-south-1,2500.00,0.00,0.00%
+dynamodb,Provisioned capacity decreases per day,ap-south-1,27.00,0.00,0.00%
+dynamodb,Global Secondary Indexes per table,ap-south-1,20.00,0.00,0.00%
+dynamodb,Concurrent control plane operations,ap-south-1,500.00,0.00,0.00%
