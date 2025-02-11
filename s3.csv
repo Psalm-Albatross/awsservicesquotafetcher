@@ -1,2 +1,21 @@
-Service Name,Current Quotas,Utilised Quotas,Used (%)
-s3,10000.00,0.00,0.00%
+Service Name,Quota Name,Region,Allocated Quota,Used Quota,Utilized (%)
+elasticloadbalancing,Certificates per Application Load Balancer,ap-south-1,25.00,0.00,0.00%
+elasticloadbalancing,Condition Wildcards per Rule,ap-south-1,5.00,0.00,0.00%
+elasticloadbalancing,Rules per Application Load Balancer,ap-south-1,100.00,0.00,0.00%
+elasticloadbalancing,Reserved Application Load Balancer Capacity Units (LCU) per Region,ap-south-1,0.00,0.00,0.00%
+elasticloadbalancing,Revocation entries per trust store,ap-south-1,500000.00,0.00,0.00%
+elasticloadbalancing,Classic Load Balancers per Region,ap-south-1,20.00,0.00,0.00%
+elasticloadbalancing,Revocation lists per trust store,ap-south-1,30.00,0.00,0.00%
+elasticloadbalancing,Listeners per Application Load Balancer,ap-south-1,50.00,0.00,0.00%
+elasticloadbalancing,Network Load Balancers per Region,ap-south-1,50.00,0.00,0.00%
+elasticloadbalancing,Targets per Availability Zone per Network Load Balancer,ap-south-1,500.00,0.00,0.00%
+elasticloadbalancing,CA certificates per trust store,ap-south-1,25.00,0.00,0.00%
+elasticloadbalancing,Targets per Application Load Balancer,ap-south-1,1000.00,0.00,0.00%
+elasticloadbalancing,Target Groups per Application Load Balancer,ap-south-1,100.00,0.00,0.00%
+elasticloadbalancing,Targets per Network Load Balancer,ap-south-1,3000.00,0.00,0.00%
+elasticloadbalancing,Network Load Balancer ENIs per VPC,ap-south-1,1200.00,0.00,0.00%
+elasticloadbalancing,Targets per Target Group per Region,ap-south-1,1000.00,0.00,0.00%
+elasticloadbalancing,Registered Instances per Classic Load Balancer,ap-south-1,1000.00,0.00,0.00%
+elasticloadbalancing,Target Groups per Region,ap-south-1,3000.00,0.00,0.00%
+elasticloadbalancing,Listeners per Classic Load Balancer,ap-south-1,100.00,0.00,0.00%
+elasticloadbalancing,Target Groups per Action per Application Load Balancer,ap-south-1,5.00,0.00,0.00%

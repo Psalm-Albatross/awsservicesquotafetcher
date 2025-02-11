@@ -1,0 +1,11 @@
+Service Name,Quota Name,Region,Allocated Quota,Used Quota,Utilized (%)
+Amazon Relational Database Service (RDS),Total storage for all DB instances,ap-south-1,100000.00,9.00,0.01%
+Amazon Relational Database Service (RDS),Custom endpoints per DB cluster,ap-south-1,5.00,9.00,180.00%
+Amazon Relational Database Service (RDS),Data API HTTP request body size,ap-south-1,4.00,9.00,225.00%
+Amazon Relational Database Service (RDS),Read replicas per primary,ap-south-1,15.00,9.00,60.00%
+Amazon Relational Database Service (RDS),Data API maximum result set size,ap-south-1,1.00,9.00,900.00%
+Amazon Relational Database Service (RDS),IAM roles per DB instance,ap-south-1,5.00,9.00,180.00%
+Amazon Relational Database Service (RDS),Manual DB cluster snapshots,ap-south-1,100.00,9.00,9.00%
+Amazon Relational Database Service (RDS),Security groups,ap-south-1,20.00,9.00,45.00%
+Amazon Relational Database Service (RDS),Parameter groups,ap-south-1,20.00,9.00,45.00%
+Amazon Relational Database Service (RDS),Data API maximum concurrent cluster-secret pairs,ap-south-1,30.00,9.00,30.00%

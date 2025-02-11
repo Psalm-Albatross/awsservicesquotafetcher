@@ -1,0 +1,21 @@
+Service Name,Quota Name,Region,Current Quotas,Utilized Quotas,Used (%)
+ec2,Running Dedicated m5 Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated c7g Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated g6 Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated c6g Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated c5 Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated m7i Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated r5 Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,All DL Spot Instance Requests,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated c6i Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated p2 Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated i2 Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated c4 Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,All X Spot Instance Requests,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated c5a Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated g4dn Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Running Dedicated r5n Hosts,ap-south-1,0.00,0.00,0.00%
+ec2,Routes per transit gateway,ap-south-1,10000.00,0.00,0.00%
+ec2,New Reserved Instances per month,ap-south-1,20.00,0.00,0.00%
+ec2,Verified Access Groups,ap-south-1,10.00,0.00,0.00%
+ec2,Public AMIs,ap-south-1,5.00,0.00,0.00%
