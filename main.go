@@ -463,7 +463,7 @@ func SaveToCSV(quotas []QuotaInfo, outputPath string) error {
 		})
 	}
 
-	log.Printf("CSV file saved to %s", outputPath)
+	log.Printf("✅ CSV file saved to %s", outputPath)
 	return nil
 }
 
@@ -527,7 +527,7 @@ func listQuotasForService(serviceCode string, region string, profile string) {
 		config.WithSharedConfigProfile(profile),
 	)
 	if err != nil {
-		log.Fatalf("AWS config error: %v", err)
+		log.Fatalf("❌ AWS config error: %v", err)
 	}
 
 	svc := servicequotas.NewFromConfig(cfg)
@@ -538,7 +538,7 @@ func listQuotasForService(serviceCode string, region string, profile string) {
 
 	result, err := svc.ListServiceQuotas(context.TODO(), input)
 	if err != nil {
-		log.Fatalf("Error fetching quotas for %s: %v", serviceCode, err)
+		log.Fatalf("❌ Error fetching quotas for %s: %v", serviceCode, err)
 	}
 
 	fmt.Printf("Available Quotas for %s in region %s:\n", serviceCode, region)
@@ -556,7 +556,7 @@ func pushToSlack(url string, data interface{}, format string) error {
 	if format == "json" {
 		payload, err = json.Marshal(data)
 		if err != nil {
-			return fmt.Errorf("error marshaling data to JSON: %v", err)
+			return fmt.Errorf("❌ Error marshaling data to JSON: %v", err)
 		}
 	} else {
 		var buffer bytes.Buffer
@@ -568,19 +568,19 @@ func pushToSlack(url string, data interface{}, format string) error {
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
 	if err != nil {
-		return fmt.Errorf("error creating HTTP request: %v", err)
+		return fmt.Errorf("❌ Error creating HTTP request: %v", err)
 	}
 	req.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return fmt.Errorf("error sending HTTP request: %v", err)
+		return fmt.Errorf("❌ Error sending HTTP request: %v", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("received non-OK response from Slack: %s", resp.Status)
+		return fmt.Errorf("❌ Received non-OK response from Slack: %s", resp.Status)
 	}
 
 	return nil
@@ -596,12 +596,12 @@ func pushDataToSlack(url string, token string, data []QuotaInfo) error {
 	payload := map[string]string{"text": buffer.String()}
 	payloadBytes, err := json.Marshal(payload)
 	if err != nil {
-		return fmt.Errorf("error marshaling payload: %v", err)
+		return fmt.Errorf("❌ Error marshaling payload: %v", err)
 	}
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(payloadBytes))
 	if err != nil {
-		return fmt.Errorf("error creating HTTP request: %v", err)
+		return fmt.Errorf("❌ Error creating HTTP request: %v", err)
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+token)
@@ -609,12 +609,12 @@ func pushDataToSlack(url string, token string, data []QuotaInfo) error {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return fmt.Errorf("error sending HTTP request: %v", err)
+		return fmt.Errorf("❌ Error sending HTTP request: %v", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("received non-OK response from Slack: %s", resp.Status)
+		return fmt.Errorf("❌ Received non-OK response from Slack: %s", resp.Status)
 	}
 
 	return nil
@@ -632,13 +632,26 @@ func main() {
 	formatFlag := flag.String("format", "table", "Format to push data (table or json)")
 	pushDataToSlackFlag := flag.String("push-data-to-slack", "", "Slack URL to push data")
 	slackTokenFlag := flag.String("slack-token", "", "Slack API token for authentication")
+	logFileFlag := flag.String("log-file", "awsservicesquotafetcher.log", "Log file path")
 
 	flag.Parse()
 
+	// Initialize logging
+	logFile, err := os.OpenFile(*logFileFlag, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatalf("❌ Error opening log file: %v", err)
+	}
+	defer logFile.Close()
+	log.SetOutput(logFile)
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
+	log.Println("🚀 Starting awsservicesquotafetcher")
+
 	if *versionFlag {
-		fmt.Println("clitool")
+		fmt.Println("awsservicesquotafetcher")
 		fmt.Println("version:", version)
 		fmt.Println("Developed by ChatGPT, Instructed By Psalm Albatross")
+		log.Println("ℹ️ Displayed version information")
 		return
 	}
 
@@ -648,7 +661,7 @@ func main() {
 
 	if *listQuotasFlag != "" {
 		if *profileFlag == "" {
-			log.Fatal("Error: --profile flag is required")
+			log.Fatal("❌ Error: --profile flag is required")
 		}
 		service := *listQuotasFlag
 		listQuotasForService(service, strings.Split(*regionsFlag, ",")[0], *profileFlag)
@@ -667,11 +680,12 @@ func main() {
 		fmt.Println("  --format           : Format to push data (table or json)")
 		fmt.Println("  --push-data-to-slack: Slack URL to push data")
 		fmt.Println("  --slack-token      : Slack API token for authentication (required when using --push-data-to-slack)")
+		log.Println("ℹ️ Displayed usage information")
 		os.Exit(0)
 	}
 
 	if *profileFlag == "" {
-		log.Fatal("Error: --profile flag is required")
+		log.Fatal("❌ Error: --profile flag is required")
 	}
 
 	cfg, err := config.LoadDefaultConfig(context.TODO(),
@@ -679,7 +693,7 @@ func main() {
 		config.WithRegion(strings.Split(*regionsFlag, ",")[0]),
 	)
 	if err != nil {
-		log.Fatalf("Error loading AWS config: %v", err)
+		log.Fatalf("❌ Error loading AWS config: %v", err)
 	}
 
 	var allQuotas []QuotaInfo
@@ -689,11 +703,11 @@ func main() {
 	for _, service := range services {
 		for _, region := range regions {
 			cfg.Region = region
-			log.Printf("Fetching quotas for %s in region: %s", service, region)
+			log.Printf("🔍 Fetching quotas for %s in region: %s", service, region)
 
 			quotas, err := FetchServiceQuotas(context.TODO(), cfg, service, region)
 			if err != nil {
-				log.Printf("Error fetching quotas for %s: %v", service, err)
+				log.Printf("❌ Error fetching quotas for %s: %v", service, err)
 				continue
 			}
 			allQuotas = append(allQuotas, quotas...)
@@ -707,22 +721,27 @@ func main() {
 
 	if *outputFlag != "" {
 		if err := SaveToCSV(allQuotas, *outputFlag); err != nil {
-			log.Fatalf("Error saving CSV: %v", err)
+			log.Fatalf("❌ Error saving CSV: %v", err)
 		}
+		log.Printf("✅ Saved quotas to CSV file: %s", *outputFlag)
 	}
 
 	if *slackURLFlag != "" {
 		if err := pushToSlack(*slackURLFlag, allQuotas, *formatFlag); err != nil {
-			log.Fatalf("Error pushing data to Slack: %v", err)
+			log.Fatalf("❌ Error pushing data to Slack: %v", err)
 		}
+		log.Println("✅ Pushed data to Slack")
 	}
 
 	if *pushDataToSlackFlag != "" {
 		if *slackTokenFlag == "" {
-			log.Fatal("Error: --slack-token flag is required when using --push-data-to-slack")
+			log.Fatal("❌ Error: --slack-token flag is required when using --push-data-to-slack")
 		}
 		if err := pushDataToSlack(*pushDataToSlackFlag, *slackTokenFlag, allQuotas); err != nil {
-			log.Fatalf("Error pushing data to Slack: %v", err)
+			log.Fatalf("❌ Error pushing data to Slack: %v", err)
 		}
+		log.Println("✅ Pushed data to Slack with token")
 	}
+
+	log.Println("🏁 Finished awsservicesquotafetcher")
 }

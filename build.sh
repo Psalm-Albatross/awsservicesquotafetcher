@@ -4,7 +4,7 @@
 BINARY_NAME="awsservicesquotafetcher"
 
 # Default version if not provided
-VERSION=${VERSION:-"0.1.0"}
+VERSION=${VERSION:-"1.1.0"}
 
 # Output directory
 OUTPUT_DIR="dist"
